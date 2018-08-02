@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include video_library *.css
+recursive-include video_library *.csv
+recursive-include video_library *.html
+recursive-include video_library *.ico
+recursive-include video_library *.js
+recursive-include video_library *.json
+recursive-include video_library *.md
+recursive-include video_library *.png
+recursive-include video_library *.py
+recursive-include video_library *.svg
+recursive-include video_library *.txt
+recursive-exclude video_library *.pyc
