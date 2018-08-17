@@ -5,9 +5,9 @@ $(document).ready(function () {
         console.log(logged_in)
         if (logged_in == false) {
             
-            frappe.msgprint("<b>Please purchase premium plans</b>", 'Access Denied')
+            frappe.msgprint("<b>Please purchase premium plan</b>", 'Access Denied')
             window.setTimeout(function () {
-                window.location = "/basic-videos";
+                window.location = "/";
             }, 2000);
         } else {
             var user_role
@@ -28,5 +28,12 @@ $(document).ready(function () {
                 }
             })
         }
+    }
+    if (window.location.pathname == '/basic-videos' && logged_in == false) {
+        frappe.msgprint("<b>Please purchase basic plan</b>", 'Access Denied')
+        window.setTimeout(function () {
+            window.location = "/";
+        }, 2000);
+
     }
 });
