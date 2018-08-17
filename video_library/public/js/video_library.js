@@ -1,8 +1,10 @@
 $(document).ready(function () {
     window.full_name = getCookie("full_name");
     var logged_in = getCookie("sid") && getCookie("sid") !== "Guest";
+    console.log(logged_in)
+    console.log(window.full_name)
     if (window.location.pathname == '/premium-videos') {
-        console.log(logged_in)
+        
         if (logged_in == false) {
             
             frappe.msgprint("<b>Please purchase premium plan</b>", 'Access Denied')
