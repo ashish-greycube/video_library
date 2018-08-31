@@ -1,0 +1,26 @@
+
+{% extends "templates/web.html" %}
+{% block title %}{{ _("Premium Video Library") }}{% endblock %}
+{% block header %}
+	<h1>{{ _("Premium Video Library") }}</h1>
+{% endblock %}
+{% block style %}
+	<style>
+	</style>
+{% endblock %}
+
+{% block page_content %}
+	{% for video in video_data %}
+		{% if loop.changed(video.course) %}
+		{% if loop.previtem is defined %}
+		<hr>
+		{% endif %}
+			<h2>{{ video.course }}</h2>
+		{% endif %}
+	<div>{{video.vimeo}}</div>
+	<br>
+	<br>
+	{% else %}
+	<b>Please purchase premium video plans. You are not subscribed to any video course.</b>
+	{% endfor %}
+{% endblock %}
