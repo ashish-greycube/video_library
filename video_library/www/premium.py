@@ -6,7 +6,7 @@ import frappe.www.list
 def get_context(context):
     if frappe.session.user=='Guest':
 		frappe.throw(_("You need to be logged in to access this page"), frappe.PermissionError)
-    context.video_data = frappe.db.sql("""select user.user as user, course.video_course as course,vimeo.name as video,vimeo.vimeo_code as vimeo from `tabUser Course Mapping` user
+    context.video_data = frappe.db.sql("""select user.user as user, course.video_course as course,vimeo.video_name as video,vimeo.vimeo_code as vimeo from `tabUser Course Mapping` user
 inner join `tabVideo Course Detail` video
 on video.parent=user.name
 inner join `tabCourse Video Mapping` course
