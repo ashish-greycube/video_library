@@ -1,7 +1,7 @@
 // Copyright (c) 2018, GreyCube Technologies and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Premium Video Courses', {
+frappe.ui.form.on('Video Course', {
 	refresh: function(frm) {
 
 	}

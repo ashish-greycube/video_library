@@ -2,7 +2,7 @@
 {% extends "templates/web.html" %}
 {% block title %}{{ _("Premium Video Library") }}{% endblock %}
 {% block header %}
-	<h1>{{ _("Premium Video Library") }}</h1>
+	
 {% endblock %}
 {% block style %}
 	<style>
@@ -10,17 +10,32 @@
 {% endblock %}
 
 {% block page_content %}
+<h4 class="octicon octicon-device-camera-video" > {{ _("Premium Video Library") }}</h4>
+<div class="table-responsive">
+<table class="table borderless table-condensed"   >
+	<tbody>
+			<tr>
 	{% for video in video_data %}
+
 		{% if loop.changed(video.course) %}
 		{% if loop.previtem is defined %}
-		<hr>
+		<tr>
 		{% endif %}
-			<h2>{{ video.course }}</h2>
+		<tr>
+		<td  ><h5 class="octicon octicon-file-text" >  {{ _("Course -") }} {{ video.course }}</h5>
+		</tr>
 		{% endif %}
-	<div>{{video.vimeo}}</div>
-	<br>
-	<br>
+	
+
+		<td class="small"><div>{{video.video}}</div><div>{{video.vimeo}}</div></td>
+		{% if loop.index % 4 == 0 %}
+		<tr>
+		{% endif %}	
 	{% else %}
 	<b>Please purchase premium video plans. You are not subscribed to any video course.</b>
 	{% endfor %}
+</tr>
+</tbody>
+</table>
+</div>
 {% endblock %}

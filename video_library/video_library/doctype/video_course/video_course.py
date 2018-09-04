@@ -6,5 +6,5 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 
-class PremiumVideoCourses(Document):
+class VideoCourse(Document):
 	pass

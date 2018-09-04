@@ -2,15 +2,15 @@
 // rename this file from _test_[name] to test_[name] to activate
 // and remove above this line
 
-QUnit.test("test: Video Course Setup", function (assert) {
+QUnit.test("test: Video Course", function (assert) {
 	let done = assert.async();
 
 	// number of asserts
 	assert.expect(1);
 
 	frappe.run_serially([
-		// insert a new Video Course Setup
-		() => frappe.tests.make('Video Course Setup', [
+		// insert a new Video Course
+		() => frappe.tests.make('Video Course', [
 			// values to be set
 			{key: 'value'}
 		]),

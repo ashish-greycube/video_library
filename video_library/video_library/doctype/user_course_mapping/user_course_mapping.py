@@ -4,11 +4,10 @@
 
 from __future__ import unicode_literals
 import frappe
-from frappe.website.website_generator import WebsiteGenerator
+from frappe.model.document import Document
 
-class VideoCourseSetup(WebsiteGenerator):
+class UserCourseMapping(Document):
 	pass
-
 
 @frappe.whitelist()
 def get_user_with_role(rolename):
@@ -19,5 +18,3 @@ def get_user_with_role(rolename):
 				""",rolename,as_list=1)
 	user_list = "\n".join([d[0] for d in user_list])
 	return user_list
-
-
