@@ -33,8 +33,9 @@
 		{% if loop.index % 4 == 0 %}
 		<tr>
 		{% endif %}	
-	{% else %}
+		{% if  loop.length == 0 %}
 	<b>Please purchase premium video plans. You are not subscribed to any video course.</b>
+	{% endif %}
 	{% endfor %}
 </tr>
 </tbody>
