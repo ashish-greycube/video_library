@@ -23,11 +23,11 @@
 	</tr>
 	{% endif %}
 
-	{% if  loop.first == false and loop.previtem.course != video.course %}
+	<!-- {% if  loop.first == false and loop.previtem.course != video.course %}
 		<tr>
 		<td  ><h5 class="octicon octicon-file-text" >  {{ _("Course -") }} {{ video.course }}</h5>
 		</tr>
-		{% endif %}
+		{% endif %} -->
 	
 		<td class="small"><div>{{video.video}}</div><div>{{video.vimeo}}</div></td>
 		{% if loop.index % 4 == 0 %}
