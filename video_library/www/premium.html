@@ -17,14 +17,14 @@
 			<tr>
 	{% for video in video_data %}
 
-		{% if loop.changed(video.course) %}
+		<!-- {% if loop.changed(video.course) %} -->
 		{% if loop.previtem is defined %}
 		<tr>
 		{% endif %}
 		<tr>
 		<td  ><h5 class="octicon octicon-file-text" >  {{ _("Course -") }} {{ video.course }}</h5>
 		</tr>
-		{% endif %}
+		<!-- {% endif %} -->
 	
 
 		<td class="small"><div>{{video.video}}</div><div>{{video.vimeo}}</div></td>
