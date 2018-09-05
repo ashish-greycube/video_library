@@ -31,7 +31,7 @@
 		{% if  loop.length == 0 %}
 			<b>Please purchase premium video plans. You are not subscribed to any video course.</b>
 		{% endif %}
-	{%set ns.course=video.course%}
+	{%set ns.course=video_data[loop.index-1].course%}
 	{% endfor %}
 </tr>
 </tbody>
