@@ -19,7 +19,7 @@
 	{% for video in video_data %}
 		{% if loop.first == true or (video.course!=ns.course and ns.course!="none") %}
 			<tr>
-			<td  ><h5 class="octicon octicon-file-text" >  {{ _("Course -") }} {{video_data[loop.index].course}}</h5>
+			<td  ><h5 class="octicon octicon-file-text" >  {{ _("Course -") }} {{video.course}}</h5>
 			</tr>
 		{% endif %}
 
