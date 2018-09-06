@@ -16,23 +16,39 @@
 	<tbody>
 			<tr>
 	{%set course = {'foo': False} %}
+	{%set break = {'count': 0} %}
+	{%set group = {'count': 0} %}
+
 	{% for video in video_data %}
-		{% if loop.first == true or (video.course!=course.foo and course.foo!=False and loop.last==false) %}
+
+		{% if group.update({'count': group.count+1}) %} {% endif %}
+
+		{% if loop.first == true or (video.course!=course.foo and course.foo!=False ) %}
 			<tr>
 			<td  ><h5 class="octicon octicon-file-text" >  {{ _("Course -") }} {{video.course}}</h5>
 			</tr>
+			{% if group.update({'count': 0}) %} {% endif %}	
 		{% endif %}
 
-		<td class="small"><div>{{video.video}}</div><div>{{video.vimeo}}</div></td>
-		{% if loop.index % 4 == 0 %}
+		{% if (video.course!=course.foo and course.foo!=False ) %}
+			{% if break.update({'count':1}) %} {% endif %}		
+		{% else %}
+			{% if break.update({'count':0}) %} {% endif %}			
+		{% endif %}
+		
+		
+		{% if (group.count % 4 == 0 and group.count!=0) %}
 		<tr>
 		{% endif %}	
-
+	
+		<td class="small"><div>{{video.video}}</div><div>{{video.vimeo}}</div></td>
+	
 		{% if  loop.length == 0 %}
 			<b>Please purchase premium video plans. You are not subscribed to any video course.</b>
 		{% endif %}
-		{% if course.update({'foo': video.course}) %} {% endif %}
 	
+		{% if course.update({'foo': video.course}) %} {% endif %}
+		
 	
 	{% endfor %}
 </tr>
