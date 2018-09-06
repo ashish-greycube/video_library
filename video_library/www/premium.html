@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block page_content %}
-<h4 class="octicon octicon-device-camera-video" > {{ _("Premium Video Library") }}</h4>
+<h4 class="octicon octicon-device-camera-video" > <font face="Segoe UI!important;">{{ _("Premium Video Library") }}</font></h4>
 <div class="table-responsive">
 <table class="table borderless table-condensed"   >
 	<tbody>
@@ -25,7 +25,7 @@
 
 		{% if loop.first == true or (video.course!=course.foo and course.foo!=False ) %}
 			<tr>
-			<td colspan="4"><h5 class="octicon octicon-file-text" >  {{ _("Course -") }} {{video.course}}</h5></td>
+			<td colspan="4"><h5 class="octicon octicon-file-text" ><font face="Segoe UI!important;"> {{ _("Course -") }} {{video.course}}</font></h5></td>
 			</tr>
 			{% if group.update({'count': 0}) %} {% endif %}	
 		{% endif %}
@@ -41,7 +41,7 @@
 		<tr>
 		{% endif %}	
 	
-		<td class="small"><div>{{video.video}}</div><div>{{video.vimeo}}</div></td>
+		<td class="small"><div><font face="Segoe UI!important;">{{video.video}}</font></div><div>{{video.vimeo}}</div></td>
 	
 		{% if  loop.length == 0 %}
 			<b>Please purchase premium video plans. You are not subscribed to any video course.</b>
