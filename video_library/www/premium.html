@@ -5,18 +5,47 @@
 {% endblock %}
 {% block style %}
         <style>
+		.page-container{
+			max-width:none;
+		}
+		.premium_video{
+			padding:5px 10px;
+			border:1px solid #494949;
+			margin-bottom:14px;
+		}
+		.premium_video iframe{
+			max-width:100%;
+			width:100%;
+			/*margin-bottom:5px;*/
+		}
+		#accordion iframe{
+			max-width:100% !important;
+			width:100% !important;
+			height:inherit !important;
+		}
+		/*.premium_video .row, #accordion .row{
+			margin:0 -5px;
+		}
+		.premium_video .col-md-3, #accordion .col-md-3{
+			padding:0 5px;
+		}*/
                 h4.title{
-                        border: 1px solid #ddd;
-                        padding: 12px 14px;
-                        background: #f2f2f2;
+                        padding: 4px 0px;
+                        color: #000;
                         border-radius: 5px;
                         font-size: 18px;
                         font-weight: 600;
+						margin: 0;
+						margin-bottom:10px;
                 }
                 h4.title span{
                         padding-right: 11px;
                         font-size: 22px;
                 }
+		.premium_video .col-md-3 p{
+			margin-top:0;
+			text-align: center;
+		}		
                 h5.subtitle{
                         font-size: 17px;
                         line-height: 28px;
@@ -31,30 +60,179 @@
                 .table > tbody > tr > td{
                         border:none;
                 }
+				.stylish-input-group .input-group-addon{
+					background: white !important; 
+				}
+				.stylish-input-group .form-control{
+					border-left:0; 
+					box-shadow:0 0 0; 
+					border-color:#ccc;
+				}
+				.stylish-input-group button{
+					border:0;
+					background:transparent;
+				}
+				.breadcrum_d{
+					margin-bottom:20px;
+				}
+				
+				p.breadcrum{
+					font-size:18px;
+					line-height:24px;
+				}
+				.panel-heading .accordion-toggle:after {
+					font-family: 'Glyphicons Halflings';  
+					content: "\e114";   
+					float: right;        
+					color: grey;         
+				}
+				.panel-heading .accordion-toggle.collapsed:after {
+					content: "\e080";    
+				}
+				p.video_title{
+					padding:0;
+					margin:0;
+				}
+				.tab-paging{
+					text-align:right;
+				}
+				.carousel-control{
+					    background: none !important;
+						    width: 3%;
+							opacity: .8;
+				}
+				a.accordion-toggle{display:block;}
         </style>
 {% endblock %}
 
 {% block page_content %}
-<h4 class="title"> <span class="octicon octicon-device-camera-video" ></span> {{ _("Premium Video Library") }}</h4>
-<div class="table-responsive">
-<table class="table borderless table-condensed"   >
-        <tbody>
-                        <tr>
-        {%set course = {'foo': False} %}
-        {%set break = {'count': 0} %}
+<div class="row breadcrum_d">
+	<div class="col-md-8">
+    	<p class="breadcrum"><a href="#.">Home</a> > Premium Video</p>
+    </div>
+    <div class="col-md-4">
+    	<div id="imaginary_container"> 
+            <div class="input-group stylish-input-group">
+            	<span class="input-group-addon">
+                    <button type="submit">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>  
+                </span>
+                <input type="text" class="form-control"  placeholder="Video Search" >
+               
+            </div>
+        </div>
+    </div>
+</div>
+<div class="premium_video">
+	<h4 class="title">  {{ _("Premium Video Library") }}</h4>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+   
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+      	<div class="col-xs-12 col-sm-6 col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+      </div>
+
+      <div class="item">
+      	<div class="col-xs-12 col-sm-6 col-md-3">
+	        <iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+      </div>
+    
+      
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  
+  
+   <!-- <div class="row">
+    	<div class="col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+        <div class="col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+        <div class="col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+        <div class="col-md-3">
+        	<iframe src="https://player.vimeo.com/video/285440328" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            <p><a href="#.">Course Name </a> > Video Name</p>
+        </div>
+    </div>-->
+</div>
+
+<div class="panel-group" id="accordion">
+<div><div><div><div>
+     {%set course = {'foo': False} %}
+     {%set break = {'count': 0} %}
+     {%set collaped = {'count': 0} %}
 
 	{%set group = {'count': 0} %}
 
 	{% for video in video_data %}
-
 	{% if group.update({'count': group.count+1}) %} {% endif %}
 
 	{% if loop.first == true or (video.course!=course.foo and course.foo!=False ) %}
-			<tr>
-			<td colspan="4" style="text-align: left;"><h5 class="subtitle"><span class="octicon octicon-file-text"></span>{{ _("Course -") }} {{video.course}}</h5></td>
+         {% if collaped.update({'count': collaped.count+1}) %} {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
 
-			</tr>
-			{% if group.update({'count': 0}) %} {% endif %}
+     <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#abc{{collaped.count}}">
+              {{ _("Course -") }}  {{video.course}}
+            </a>
+          </h4>
+        </div>
+        <div id="abc{{collaped.count}}" class="panel-collapse collapse {% if collaped.count == 1 %} in {% endif %}">
+          <div class="panel-body">
+            <div class="row">
+    {% if group.update({'count': 0}) %} {% endif %}
 	{% endif %}
 
 	{% if (video.course!=course.foo and course.foo!=False ) %}
@@ -62,24 +240,34 @@
 	{% else %}
 			{% if break.update({'count':0}) %} {% endif %}
 	{% endif %}
-
-
-	{% if (group.count % 4 == 0 and group.count!=0) %}
-	<tr>
-	{% endif %}
-
-	<td class="small"><div><font face="Segoe UI!important;">{{video.video}}</font></div><div>{{video.vimeo}}</div></td>
-
-	{% if  loop.length == 0 %}
+    
+     		<div class="col-md-3"><p class="video_title">{{video.video}} </p> {{video.vimeo}} </div>   
+    {% if  loop.length == 0 %}
 			<b>Please purchase premium video plans. You are not subscribed to any video course.</b>
 	{% endif %}
 
-	{% if course.update({'foo': video.course}) %} {% endif %}
-
-
+	{% if course.update({'foo': video.course}) %}
+      
+     {% endif %}
 {% endfor %}
-</tr>
-</tbody>
-</table>
+    	</div>
+      </div>
+    </div>
+  </div>
+  
 </div>
+<div class="tab-paging">
+<ul class="pagination">
+    <li><a href="#.">&laquo;</a></li>
+    <li><a href="#.">1</a></li>
+    <li><a href="#.">2</a></li>
+    <li><a href="#.">3</a></li>
+    <li><a href="#.">4</a></li>
+    <li><a href="#.">5</a></li>
+    <li><a href="#.">&raquo;</a></li>
+</ul>
+</div>
+
+  
+
 {% endblock %}
