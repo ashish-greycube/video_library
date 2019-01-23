@@ -1,0 +1,56 @@
+{% extends "video_library/templates/video_web.html" %}
+{% block title %}{{ _("Premium Video Library") }}{% endblock %}
+{% block header %}
+
+{% endblock %}
+{% block style %}
+	<style>
+		{% include "video_library/templates/generators/video_category.css" %}
+	</style>
+{% endblock %}
+
+{% block page_content %}
+<h4 class="title"> <span class="octicon octicon-device-camera-video" ></span> {{title}} {{ _("Video Library") }}</h4>
+
+{% if featured_video_data %}
+  <div class="row">
+      <div class="col-md-12">{{ _("Featured Video") }}</div>
+    </div>
+<div class="row">
+    {% for video in featured_video_data %}
+    <div class="col-md-3"> {{video.vimeo}} <p class="video_title"> {{video.course}}>{{video.video}} </p></div> 
+    {% endfor %}
+</div>
+{% endif %}
+
+<div>
+    {%set group = {'count': 0} %}
+    {% for video in video_data %}
+    {% if loop.changed(video.course) %}
+    {% if group.update({'count': group.count+1}) %} {% endif %}
+  <div class="row">
+    <div class="col-md-12">{{video.course}}</div>
+    {{frappe.form_dict.start|int}}{{group.count}}
+  </div>
+  <div class="row">
+    {% endif %}
+    <div class="col-md-3"><p class="video_title">{{video.video}} </p> {{video.vimeo}} </div>   
+  {% if loop.nextitem is defined and loop.nextitem.course != video.course %}
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<div class="text-center item-group-nav-buttons">
+    {% if frappe.form_dict.start|int > 0 %}
+    <a class="btn btn-default" href="/{{ pathname }}?start={{ frappe.form_dict.start|int - page_length }}">{{ _("Prev") }}</a>
+    {% endif %}
+    {% if video_data|length > page_length %}
+    {% endif %}
+    {% if show_next|int ==1 %}
+    <a class="btn btn-default" href="/{{ pathname }}?start={{ frappe.form_dict.start|int + page_length}}">{{ _("Next") }}</a>
+    {% endif %}
+</div>
+
+
+{% endblock %}

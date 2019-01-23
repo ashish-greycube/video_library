@@ -1,0 +1,94 @@
+{% extends "video_library/templates/video_web.html" %}
+{% block title %}{{ _("Premium Video Library") }}{% endblock %}
+{% block header %}
+
+{% endblock %}
+{% block style %}
+	<style>
+		{% include "video_library/templates/generators/video_category.css" %}
+	</style>
+{% endblock %}
+
+{% block page_content %}
+<h4 class="title"> <span class="octicon octicon-device-camera-video" ></span> {{title}} {{ _("Video Library") }}</h4>
+
+{% if featured_video_data %}
+<div class="panel-heading">
+    <h4 class="panel-title">
+          <span class="octicon octicon-file-text"> {{ _("Featured Video") }}</span>
+    </h4>
+  </div>
+<div class="row">
+    {% for video in featured_video_data %}
+    <div class="col-md-3"> {{video.vimeo}} <p class="video_title"> {{video.course}}>{{video.video}} </p></div> 
+    {% endfor %}
+</div>
+{% endif %}
+
+<div>
+    <div class="panel-group" id="accordion">
+        <div><div><div><div>
+             {%set course = {'foo': False} %}
+             {%set break = {'count': 0} %}
+             {%set collaped = {'count': 0} %}
+        
+            {%set group = {'count': 0} %}
+        
+            {% for video in video_data %}
+            {% if group.update({'count': group.count+1}) %} {% endif %}
+        
+            {% if loop.first == true or (video.course!=course.foo and course.foo!=False ) %}
+                 {% if collaped.update({'count': collaped.count+1}) %} {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        
+             <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#abc{{collaped.count}}">
+                        <span class="octicon octicon-file-text"> {{video.course}}</span>
+                    </a>
+                    
+                  </h4>
+                </div>
+                <div id="abc{{collaped.count}}" class="panel-collapse collapse {% if collaped.count == 1 %} in {% endif %}">
+                  <div class="panel-body">
+                    <div class="row">
+            {% if group.update({'count': 0}) %} {% endif %}
+            {% endif %}
+        
+            {% if (video.course!=course.foo and course.foo!=False ) %}
+                    {% if break.update({'count':1}) %} {% endif %}
+            {% else %}
+                    {% if break.update({'count':0}) %} {% endif %}
+            {% endif %}
+            
+                     <div class="col-md-3"><p class="video_title">{{video.video}} </p> {{video.vimeo}} </div>   
+            {% if  loop.length == 0 %}
+                    <b>Please purchase premium video plans. You are not subscribed to any video course.</b>
+            {% endif %}
+        
+            {% if course.update({'foo': video.course}) %}
+              
+             {% endif %}
+        {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+<div class="text-center item-group-nav-buttons">
+    {% if frappe.form_dict.start|int > 0 %}
+    <a class="btn btn-default" href="/{{ pathname }}?start={{ frappe.form_dict.start|int - page_length }}">{{ _("Prev") }}</a>
+    {% endif %}
+    {% if video_data|length > page_length %}
+    <a class="btn btn-default" href="/{{ pathname }}?start={{ frappe.form_dict.start|int + page_length }}">{{ _("Next") }}</a>
+    {% endif %}
+</div>
+</div>
+
+
+{% endblock %}

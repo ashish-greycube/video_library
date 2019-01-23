@@ -1,4 +1,4 @@
-{% extends "templates/web.html" %}
+{% extends "video_library/templates/video_web.html" %}
 {% block title %}{{ _("Premium Video Library") }}{% endblock %}
 {% block header %}
 
@@ -68,7 +68,7 @@
 	<tr>
 	{% endif %}
 
-	<td class="small"><div><font face="Segoe UI!important;">{{video.video}}</font></div><div>{{video.vimeo}}</div></td>
+	<td class="small" ><div><font face="Segoe UI!important;">{{video.video}}</font></div><div>{{video.vimeo}}</div></td>
 
 	{% if  loop.length == 0 %}
 			<b>Please purchase premium video plans. You are not subscribed to any video course.</b>
@@ -79,7 +79,18 @@
 
 {% endfor %}
 </tr>
+
 </tbody>
 </table>
+<div class="text-center item-group-nav-buttons">
+    {% if frappe.form_dict.start|int > 0 %}
+    <a class="btn btn-default" href="/{{ pathname }}?start={{ frappe.form_dict.start|int - page_length }}">{{ _("Prev") }}</a>
+    {% endif %}
+    {% if video_data|length > page_length %}
+    <a class="btn btn-default" href="/{{ pathname }}?start={{ frappe.form_dict.start|int + page_length }}">{{ _("Next") }}</a>
+    {% endif %}
 </div>
+</div>
+
+
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends "video_library/templates/video_web.html" %}
+
+{% block title %} {{ _("Video Search") }} {% endblock %}
+{% block style %}
+	<style>
+		{% include "video_library/templates/generators/video_category.css" %}
+	</style>
+{% endblock %}
+{% block header %}<h2>{{ _("Video Search") }}</h2>{% endblock %}
+
+{% block page_content %}
+<script>{% include "video_library/public/js/video_product_list.js" %}</script>
+
+<script>
+frappe.ready(function() {
+	var txt = get_url_arg("search");
+	$(".search-results").html("{{ _('Search results for') }}: " + encodeURIComponent(txt));
+	window.search = txt;
+	window.start = 0;
+	window.limit=4;
+	window.get_product_list();
+});
+</script>
+
+<div class="product-search-content">
+    <h3 class="search-results">{{ _("Search Results") }}</h3>
+	<div id="search-list" class="row">
+
+	</div>
+	<div style="text-align: center;">
+		<div class="more-btn"
+			style="display: none; text-align: center;">
+            <button class="btn btn-default">{{ _("More...") }}</button>
+		</div>
+	</div>
+</div>
+{% endblock %}
