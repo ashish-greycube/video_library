@@ -62,6 +62,7 @@ class VideoCategory(WebsiteGenerator):
 			print len(trailing_count)
 		print '---------'
 		total_video_count=cint(get_total_video_count(category=self.name))
+		context.total_video_count=total_video_count
 		current_trailing_count=cint(len(trailing_count))
 		if total_video_count==current_trailing_count:
 			show_next=0
