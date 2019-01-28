@@ -28,6 +28,11 @@ class VideoCategory(WebsiteGenerator):
 
     def get_context(self, context):
 		# webpage settings
+		context._login_required = True
+		context.allow_guest = False
+		if frappe.session.user == "Guest":
+			context._login_required = True
+			frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)
 		context.no_cache = 1
 		context.search_link = 'video_product_search'
 		context.show_search=1
