@@ -33,6 +33,10 @@ class VideoCategory(WebsiteGenerator):
 		if frappe.session.user == "Guest":
 			context._login_required = True
 			frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)
+		else:
+			if (check_access(self.name)==None):
+				context._login_required = True
+				frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)			
 		context.no_cache = 1
 		context.search_link = 'video_product_search'
 		context.show_search=1
@@ -81,6 +85,18 @@ class VideoCategory(WebsiteGenerator):
 
     def get_list_context(self,context):
 		context.title = self.category_name
+
+@frappe.whitelist(allow_guest=True)
+def check_access(category):
+	logged_in_user_roles_search=cstr("'"+"','".join(frappe.get_roles(frappe.session.user))+"'").replace('"','')
+	query = """select distinct(CAT.name)
+from `tabVideo Category` CAT
+inner join `tabPortal Menu Item` PMT
+on CONCAT('/',CAT.route) = PMT.route
+where PMT.role IN (%s) """%(logged_in_user_roles_search)
+	query += """ and CAT.name ='%s'""" % (category)
+	data = frappe.db.sql(query, as_list=1)
+	return data[0][0] if data else None
 
 
 
