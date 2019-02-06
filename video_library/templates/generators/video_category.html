@@ -4,21 +4,21 @@
 
 {% endblock %}
 {% block style %}
-    <link rel="stylesheet" type="text/css" href="files/owl.carousel.css"/>
-    <link rel="stylesheet" type="text/css" href="files/owl.theme.css"/>
 	<style>
-		{% include "video_library/templates/generators/video_category.css" %}
+        {% include "video_library/templates/generators/video_category.css" %}
+        {% include "video_library/templates/generators/owl.carousel.css" %}
+        {% include "video_library/templates/generators/owl.theme.css" %}
 	</style>
 {% endblock %}
 
 {% block page_content %}
 <script>{% include "video_library/public/js/video_category.js" %}</script>
-<h4 class="title"> <img src="files/nounlesson_717537.png" style="max-width:50px;" /> {{title}} {{ _("Video Library") }}  <span class="pull-right sml"><img src="files/tag_938952.png" style="max-width:40px;" /> exclusive #{{total_video_count}} videos</span></h4>
+<h4 class="title"> <img src="video_library/public/image/nounlesson_717537.png" style="max-width:50px;" /> {{title}} {{ _("Video Library") }}  <span class="pull-right sml"><img src="video_library/public/image/tag_938952.png" style="max-width:40px;" /> exclusive #{{total_video_count}} videos</span></h4>
 
 
 {% if featured_video_data %}
 <div class="feature-block" style="max-width:100%; overflow:hidden;">
-  <h5 class="subtitle"> <img src="files/noun_417865.png" /> {{ _("Featured Video") }}</h5>
+  <h5 class="subtitle"> <img src="video_library/public/image/noun_417865.png" /> {{ _("Featured Video") }}</h5>
     
 <div class=" m0 slick_slider" id="slick_slider">
     {% for video in featured_video_data %}
@@ -26,7 +26,7 @@
     	<div class="inner row m0"> 
         		<div class="row screencast m0">{{video.vimeo}} </div> 
             <div class="row m0 post_data">
-            	<div class="category"><img src="files/catagory.png" alt="">{{video.course}}</div>
+            	<div class="category"><img src="video_library/public/image/catagory.png" alt="">{{video.course}}</div>
                 <div class="row m0"><span class="post_title">{{video.video}}</span></div>
                 
             </div>
@@ -49,7 +49,7 @@
                 <div class="panel-heading">
                   <h4 class="panel-title">
                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#abc{{collaped.count}}">
-                        <img src="files/menu_110138.png" style="max-width:50px;" /> {{video.course}}  <span></span>
+                        <img src="video_library/public/image/menu_110138.png" style="max-width:50px;" /> {{video.course}}  <span></span>
                     </a>
                   </h4>
                 </div>  

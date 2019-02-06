@@ -20,7 +20,7 @@ app_license = "MIT"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/video_library/css/video_library.css"
-# web_include_js = "/assets/video_library/js/video_library.js"
+web_include_js = "/assets/video_library/js/video_category_carousel.js"
 
 # include js in page
 # page_js = {"page" : "public/js/file.js"}
