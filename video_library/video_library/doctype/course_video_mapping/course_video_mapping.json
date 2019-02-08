@@ -1,7 +1,7 @@
 {
  "allow_copy": 0, 
  "allow_guest_to_view": 0, 
- "allow_import": 0, 
+ "allow_import": 1, 
  "allow_rename": 0, 
  "autoname": "field:video_course", 
  "beta": 0, 
@@ -115,7 +115,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2019-01-23 07:47:11.440105", 
+ "modified": "2019-02-08 14:18:54.312590", 
  "modified_by": "Administrator", 
  "module": "Video Library", 
  "name": "Course Video Mapping", 

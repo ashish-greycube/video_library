@@ -1,7 +1,7 @@
 {
  "allow_copy": 0, 
  "allow_guest_to_view": 0, 
- "allow_import": 0, 
+ "allow_import": 1, 
  "allow_rename": 0, 
  "autoname": "field:video_name", 
  "beta": 0, 
@@ -263,7 +263,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2019-01-21 06:05:57.721994", 
+ "modified": "2019-02-08 14:18:03.062596", 
  "modified_by": "Administrator", 
  "module": "Video Library", 
  "name": "Video Vimeo", 

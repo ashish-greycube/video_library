@@ -1,7 +1,7 @@
 {
  "allow_copy": 0, 
  "allow_guest_to_view": 0, 
- "allow_import": 0, 
+ "allow_import": 1, 
  "allow_rename": 0, 
  "autoname": "field:category_name", 
  "beta": 0, 
@@ -144,7 +144,7 @@
  "issingle": 0, 
  "istable": 0, 
  "max_attachments": 0, 
- "modified": "2019-01-28 11:43:03.527276", 
+ "modified": "2019-02-08 14:19:23.333833", 
  "modified_by": "Administrator", 
  "module": "Video Library", 
  "name": "Video Category", 

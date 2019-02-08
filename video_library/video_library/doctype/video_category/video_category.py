@@ -141,6 +141,7 @@ order by %s %s """% (cstr(category),course_sort_order,cint(start),cint(limit),cs
 	print data
 	return data
 
+@frappe.whitelist(allow_guest=True)
 def get_item_for_list_in_html(context):
 	products_template = "video_library/templates/includes/video_products_as_list.html"
 	print context
