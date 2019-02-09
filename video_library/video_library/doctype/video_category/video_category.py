@@ -38,8 +38,8 @@ class VideoCategory(WebsiteGenerator):
 				context._login_required = True
 				frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)			
 		context.no_cache = 1
-		context.search_link = 'video_product_search'
-		context.show_search=1
+		context.search_link = '/video_product_search'
+		context.show_search=True
 		context.show_sidebar=False
 
 		# get video settings
