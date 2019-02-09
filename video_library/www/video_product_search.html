@@ -21,7 +21,6 @@ frappe.ready(function() {
 	$(".search-results").html("{{ _('Search results for') }}: " + encodeURIComponent(txt));
 	window.search = txt;
 	window.start = 0;
-	window.limit=4;
 	window.get_product_list();
 });
 </script>

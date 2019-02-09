@@ -42,20 +42,22 @@ window.get_product_list = function() {
 }
 
 window.render_product_list = function(data) {
+	console.log(data)
+	console.log(window.start)
 	var table = $("#search-list .table");
 	
-	if(data == undefined && window.start == 0) {
+	if ((data == undefined && window.start == 0) || (data.length == 0 && window.start == 0) ){
 		message="<div class='alert alert-warning'>Sorry no video found for your search. Please email us at "+window.email_id+" with your requirements. Thanks!</div>"
 				$(".more-btn").replaceWith(message);
 				return true
 	}
 
-	if(data == undefined) {
+	if(data == undefined || data.length == 0) {
 		$(".more-btn")
 		.replaceWith("<div class='text-muted'>{{ _("Nothing more to show.") }}</div>");
 		return
 	}
-	if(data.length) {
+	if(data.length > 0) {
 		if(!table.length)
 			var table = $("<table class='table'>").appendTo("#search-list");
 
@@ -64,7 +66,7 @@ window.render_product_list = function(data) {
 		});
 	}
 
-	if(data.length > 0 && data.length<4) {
+	if(data.length > 0 && data.length<12) {
 		if(!table) {
 			$(".more-btn")
 				.replaceWith("<div class='alert alert-warning'>{{ _("No products found.") }}</div>");
@@ -79,6 +81,7 @@ window.render_product_list = function(data) {
 
 
 	}
-	window.limit  = (window.start+data.length || 0)
-	window.start += 4;
+	window.limit  = window.start + 12;
+	window.start += (data.length || 0);
+	// window.start += 4;
 }

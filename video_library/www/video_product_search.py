@@ -19,7 +19,7 @@ def get_video_library_contact_email():
 	return cstr(frappe.db.get_single_value('Video Library Settings', 'video_library_contact_email')) 
 
 @frappe.whitelist(allow_guest=True)
-def get_product_list(search=None, start=0, limit=4):
+def get_product_list(search=None, start=0, limit=12):
 	# base query
 	course_sort_order=None
 	course_sort_order=cstr(frappe.db.get_single_value('Video Library Settings', 'course_sorting_by')) or 'Most Recent First'
