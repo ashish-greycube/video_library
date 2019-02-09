@@ -5,6 +5,8 @@
 	<style>
 		{% include "video_library/templates/generators/video_category.css" %}
 	</style>
+{% endblock %}
+{% block style %}	
 	<style>
 		#page-video_product_search .page-head .page-search-block{ margin-top: 0px !important; }
 		.product-search-content .alert-warning{ background-color:#4aa3df; color:#000; border-color:#4aa3df;}
@@ -13,6 +15,7 @@
 {% block header %}<h2>{{ _("Video Search") }}</h2>{% endblock %}
 
 {% block page_content %}
+<div class="container">
 <script>{% include "video_library/public/js/video_product_list.js" %}</script>
 
 <script>
@@ -36,5 +39,6 @@ frappe.ready(function() {
             <button class="btn btn-default">{{ _("More...") }}</button>
 		</div>
 	</div>
+</div>
 </div>
 {% endblock %}
