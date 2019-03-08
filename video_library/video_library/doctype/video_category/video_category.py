@@ -36,7 +36,7 @@ class VideoCategory(WebsiteGenerator):
     else:
       if (check_access(self.name)==None):
         context._login_required = True
-        frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)			
+        frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)     
     context.no_cache = 1
     context.search_link = '/video_product_search'
     context.show_search=True
@@ -58,11 +58,11 @@ class VideoCategory(WebsiteGenerator):
         limit=start+context.page_length, search=None,course_sort_order=context.course_sort_order,video_sort_order=context.video_sort_order),
       "parents": [{'name': 'video', 'title': _('My Account'),'route': 'me' }],
       "title": self.category_name,
-    })	
+    })  
     trailing_count=get_video_list_for_category(category= self.name, start=0,
         limit=start+context.page_length, search=None,course_sort_order=context.course_sort_order,video_sort_order=context.video_sort_order)
     for v in trailing_count:
-      pass
+      print(v.video)
     total_video_count=cint(get_total_video_count(category=self.name))
     context.total_video_count=total_video_count
     current_trailing_count=cint(len(trailing_count))
@@ -224,5 +224,5 @@ where CAT.name=%(category)s
   #return [get_item_for_list_in_html(r) for r in data]
 
 # def get_item_for_list_in_html(context):
-# 	products_template = 'video_library/templates/includes/video_products_as_grid.html'
-# 	return frappe.get_template(products_template).render(context)
+#   products_template = 'video_library/templates/includes/video_products_as_grid.html'
+#   return frappe.get_template(products_template).render(context)
