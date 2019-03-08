@@ -17,66 +17,66 @@ class VideoCategory(WebsiteGenerator):
         page_title_field = "category_name",)
 
     def validate(self):
-    self.make_route()
+      self.make_route()
 
     def make_route(self):
-    '''Make website route'''
-    if not self.route:
-      self.route = ''
-      self.route += self.scrub(self.name)
-      return self.route
+      '''Make website route'''
+      if not self.route:
+        self.route = ''
+        self.route += self.scrub(self.name)
+        return self.route
 
     def get_context(self, context):
-    # webpage settings
-    context._login_required = True
-    context.allow_guest = False
-    if frappe.session.user == "Guest":
+      # webpage settings
       context._login_required = True
-      frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)
-    else:
-      if (check_access(self.name)==None):
+      context.allow_guest = False
+      if frappe.session.user == "Guest":
         context._login_required = True
-        frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)     
-    context.no_cache = 1
-    context.search_link = '/video_product_search'
-    context.show_search=True
-    context.show_sidebar=False
+        frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)
+      else:
+        if (check_access(self.name)==None):
+          context._login_required = True
+          frappe.throw(_("You don't have the permissions to access this document"), frappe.PermissionError)     
+      context.no_cache = 1
+      context.search_link = '/video_product_search'
+      context.show_search=True
+      context.show_sidebar=False
 
-    # get video settings
-    context.page_length = cint(cint(frappe.db.get_single_value('Video Library Settings', 'video_per_page'))) or 7
-    context.no_of_featured_videos=cint(frappe.db.get_single_value('Video Library Settings', 'no_of_featured_videos')) or 4
-    context.course_sort_order=cstr(frappe.db.get_single_value('Video Library Settings', 'course_sorting_by')) or 'Most Recent First'
-    context.video_sort_order=cstr(frappe.db.get_single_value('Video Library Settings', 'video_sorting_by')) or 'Most Recent First'
+      # get video settings
+      context.page_length = cint(cint(frappe.db.get_single_value('Video Library Settings', 'video_per_page'))) or 7
+      context.no_of_featured_videos=cint(frappe.db.get_single_value('Video Library Settings', 'no_of_featured_videos')) or 4
+      context.course_sort_order=cstr(frappe.db.get_single_value('Video Library Settings', 'course_sorting_by')) or 'Most Recent First'
+      context.video_sort_order=cstr(frappe.db.get_single_value('Video Library Settings', 'video_sorting_by')) or 'Most Recent First'
 
-    #pagination
-    start = int(frappe.form_dict.start or 0)
-    if start < 0:
-      start = 0
-    context.update({
-      "featured_video_data":get_featured_video_list(category= self.name, start=0,limit=context.no_of_featured_videos),
-      "video_data": get_video_list_for_category(category= self.name, start=start,
-        limit=start+context.page_length, search=None,course_sort_order=context.course_sort_order,video_sort_order=context.video_sort_order),
-      "parents": [{'name': 'video', 'title': _('My Account'),'route': 'me' }],
-      "title": self.category_name,
-    })  
-    trailing_count=get_video_list_for_category(category= self.name, start=0,
-        limit=start+context.page_length, search=None,course_sort_order=context.course_sort_order,video_sort_order=context.video_sort_order)
-    for v in trailing_count:
-      print(v.video)
-    total_video_count=cint(get_total_video_count(category=self.name))
-    context.total_video_count=total_video_count
-    current_trailing_count=cint(len(trailing_count))
-    if total_video_count==current_trailing_count:
-      show_next=0
-    else:
-      show_next=1
-    context.update({
-      "show_next":show_next
-    })
-    return context
+      #pagination
+      start = int(frappe.form_dict.start or 0)
+      if start < 0:
+        start = 0
+      context.update({
+        "featured_video_data":get_featured_video_list(category= self.name, start=0,limit=context.no_of_featured_videos),
+        "video_data": get_video_list_for_category(category= self.name, start=start,
+          limit=start+context.page_length, search=None,course_sort_order=context.course_sort_order,video_sort_order=context.video_sort_order),
+        "parents": [{'name': 'video', 'title': _('My Account'),'route': 'me' }],
+        "title": self.category_name,
+      })  
+      trailing_count=get_video_list_for_category(category= self.name, start=0,
+          limit=start+context.page_length, search=None,course_sort_order=context.course_sort_order,video_sort_order=context.video_sort_order)
+      for v in trailing_count:
+        print(v.video)
+      total_video_count=cint(get_total_video_count(category=self.name))
+      context.total_video_count=total_video_count
+      current_trailing_count=cint(len(trailing_count))
+      if total_video_count==current_trailing_count:
+        show_next=0
+      else:
+        show_next=1
+      context.update({
+        "show_next":show_next
+      })
+      return context
 
     def get_list_context(self,context):
-    context.title = self.category_name
+      context.title = self.category_name
 
 @frappe.whitelist(allow_guest=True)
 def check_access(category):
